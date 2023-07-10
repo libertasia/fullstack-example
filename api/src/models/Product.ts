@@ -16,15 +16,16 @@ export type ProductDocument = Document & {
   image: string;
 };
 
-const ProductSchema = new mongoose.Schema({
+export const ProductSchema = new mongoose.Schema({
   title: {
     // type from database
     type: String,
     required: true,
+    unique: true,
   },
   price: {
     type: Number,
-    required: true,
+    quired: true,
   },
   image: {
     type: String,

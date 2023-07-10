@@ -7,6 +7,6 @@ Fullstack example
 1. `yarn`
 2. `yarn start`
 
-### Note
+### Notes for Andrea
 
 - database: isa8-demo
