@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
 
-export default function Form() {
+export default function AccountRegisterForm() {
   // get user information: email +password
   const [userInformation, setUserInformation] = useState({
     email: "",
@@ -20,11 +20,6 @@ export default function Form() {
   console.log(userInformation, "user information");
 
   function onClickHandler() {
-    // send data to server
-    // axios
-    // endpoint: http://localhost:8000/users
-    // method: post
-
     const endpoint = "http://localhost:8000/users";
 
     axios
@@ -32,7 +27,7 @@ export default function Form() {
       .then((random) => console.log(random.data))
       .catch((error) => console.log(error));
   }
-  // get method
+
   return (
     <div>
       Form
