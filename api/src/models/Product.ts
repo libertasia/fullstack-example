@@ -1,12 +1,3 @@
-// which product? car, clothes
-
-// fruit
-
-// title
-// price
-// image
-
-// define the product
 import mongoose, { Document } from "mongoose";
 
 // type from typescript

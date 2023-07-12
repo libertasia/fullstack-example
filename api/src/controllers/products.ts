@@ -70,6 +70,7 @@ export const updateProductInformation = async (
 ) => {
   try {
     const productId = req.params.id;
+
     const newInformation = req.body;
     const newProduct = await updateProductByIdService(
       productId,

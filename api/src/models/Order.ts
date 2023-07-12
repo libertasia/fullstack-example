@@ -2,6 +2,7 @@ import mongoose, { Document } from "mongoose";
 
 import { ProductDocument, ProductSchema } from "./Product";
 
+// ProductOrder = Product+quantity
 // type from typescript
 export type OrderDocument = Document & {
   createdAt: Date;
@@ -10,7 +11,6 @@ export type OrderDocument = Document & {
 };
 
 // add quantity to product in order document
-
 const OrderSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
