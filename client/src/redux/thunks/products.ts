@@ -1,6 +1,6 @@
 import { AppDispatch } from "../store";
 import { productActions } from "../slices/products";
-// import { productDetailActions } from "../slices/productDetail";
+import { productDetailActions } from "../slices/productDetail";
 
 export function fetchProductData() {
   const productUrl = "http://localhost:8000/products";
@@ -11,11 +11,11 @@ export function fetchProductData() {
   };
 }
 
-// export function fetchProductDetail(productId: string) {
-//   const productDetailUrl = `https://api.escuelajs.co/api/v1/products/${productId}`;
-//   return async (dispatch: AppDispatch) => {
-//     const response = await fetch(productDetailUrl);
-//     const productDetailData = await response.json();
-//     dispatch(productDetailActions.getProductDetail(productDetailData));
-//   };
-// }
+export function fetchProductDetail(productId: string) {
+  const productDetailUrl = `http://localhost:8000/products/${productId}`;
+  return async (dispatch: AppDispatch) => {
+    const response = await fetch(productDetailUrl);
+    const productDetailData = await response.json();
+    dispatch(productDetailActions.getProductDetail(productDetailData));
+  };
+}

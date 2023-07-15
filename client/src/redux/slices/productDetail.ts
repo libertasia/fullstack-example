@@ -3,19 +3,19 @@ import { Product } from "../../types/type";
 
 type InitialState = {
   loading: boolean;
-  productDetail: Product[];
+  productDetail: Product | null;
 };
 
 const initialState: InitialState = {
   loading: true,
-  productDetail: [],
+  productDetail: null,
 };
 
 const productDetailSlice = createSlice({
   name: "productDetail",
   initialState,
   reducers: {
-    getProductData: (state, action: PayloadAction<Product[]>) => {
+    getProductDetail: (state, action: PayloadAction<Product>) => {
       state.productDetail = action.payload;
       state.loading = false;
     },
