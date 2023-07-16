@@ -13,7 +13,7 @@ export default function ProductList() {
 
   useEffect(() => {
     dispatch(fetchProductData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
