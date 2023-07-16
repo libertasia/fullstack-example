@@ -25,6 +25,12 @@ export default function ProductList() {
             <Link to={`${product._id}`}>
               <button> More detail</button>
             </Link>
+            <img
+              src={`http://localhost:8000/static/${product.image}`}
+              alt={product.title}
+              height="50px"
+              width="50px"
+            />
           </div>
         );
       })}
