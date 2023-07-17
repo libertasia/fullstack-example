@@ -16,7 +16,7 @@ export const ProductSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    quired: true,
+    required: true,
   },
   image: {
     type: String,

@@ -11,7 +11,7 @@ export default function ProductDetail() {
   );
 
   const dispatch = useDispatch<AppDispatch>();
-
+  // result: object
   const result = useParams();
   const productId = result.id;
 

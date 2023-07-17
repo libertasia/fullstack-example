@@ -5,6 +5,7 @@ import { productDetailActions } from "../slices/productDetail";
 export function fetchProductData() {
   const productUrl = "http://localhost:8000/products";
   return async (dispatch: AppDispatch) => {
+    // axios or fetch
     const response = await fetch(productUrl);
     const productData = await response.json();
     dispatch(productActions.getProductData(productData));

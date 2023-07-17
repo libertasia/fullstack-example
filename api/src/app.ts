@@ -18,6 +18,7 @@ passport.use(jwtStrategy);
 // routes
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+
 // Serve product images from the 'images' folder
 console.log(__dirname);
 app.use(

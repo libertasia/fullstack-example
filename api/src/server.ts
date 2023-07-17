@@ -6,6 +6,8 @@ import app from "./app";
 
 dotenv.config();
 
+// 8000, 5000, 4000
+// port free
 const port = 8000;
 
 mongoose
