@@ -27,19 +27,22 @@ export default function UserInformation() {
     const url = `http://localhost:8000/users/${userDetail?._id}`;
     axios
       .put(url, newInformation, {
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   Authorization: `Bearer ${token}`,
-        // },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
       })
       .then((res) => {
-        if (res.status === 401) {
-          // alert user
-          alert("pls log in to change your information");
-        }
+        console.log(res, "new data");
         // refresh the page
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 401) {
+          // alert user
+          alert("pls log in to change your information");
+          return;
+        }
+      });
   }
   if (!userDetail) {
     return <div> no data ...</div>;

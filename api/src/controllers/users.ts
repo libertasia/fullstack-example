@@ -79,5 +79,5 @@ export const updateUserController = async (
   const update = req.body;
   const userId = req.params.id;
   const updatedUser = await UserServices.updateUser(userId, update);
-  res.json(updatedUser);
+  res.status(200).json(updatedUser);
 };
