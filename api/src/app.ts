@@ -1,7 +1,7 @@
 import passport from "passport";
 import express from "express";
 import cors from "cors";
-import path from "path";
+// import path from "path";
 
 import productRouter from "./routes/products";
 import userRouter from "./routes/users";

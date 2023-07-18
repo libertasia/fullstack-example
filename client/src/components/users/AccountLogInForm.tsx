@@ -39,7 +39,7 @@ export default function AccountLogInForm() {
         variant="standard"
         onChange={getUserPassword}
       />
-      <Button onClick={onClickHandler}>Submit</Button>
+      <Button onClick={onClickHandler}>Log in</Button>
     </div>
   );
 }
