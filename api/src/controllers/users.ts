@@ -1,9 +1,11 @@
-import { NextFunction, Request, Response, Router } from "express";
+import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 import User from "../models/User";
 import UserServices from "../services/users";
+import { BadRequestError } from "../helpers/apiError";
 
 export const createUser = async (
   req: Request,
@@ -11,9 +13,12 @@ export const createUser = async (
   next: NextFunction
 ) => {
   try {
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+
     const userInformation = new User({
       email: req.body.email,
-      password: req.body.password,
+      password: hashedPassword,
     });
     const newUser = await UserServices.createUserService(userInformation);
     res.status(200).json(newUser);
@@ -43,6 +48,10 @@ export const logInWithPassword = async (
     // 1.payload
     // 2. JWT
     // 3. expire time: 1h, 1m, 1s
+    const match = await bcrypt.compare(userData.password, req.body.password);
+    if (match) {
+      throw new BadRequestError("Password doesnt match  !");
+    }
     const token = jwt.sign(
       {
         // email and password

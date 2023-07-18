@@ -16,13 +16,17 @@ export const createProduct = async (
   next: NextFunction
 ) => {
   // way1: de-structuring object here
-  const { title, price, imageName } = req.body;
+  const { title, price, image } = req.body;
+  // for local image
+  // const { title, price, imageName } = req.body;
+
   const productInformation = new Product({
     title: title,
     price: price,
+    image: image,
     // image path = path + image name
     // image name
-    image: imageName,
+    // image: imageName,
   });
 
   // way2

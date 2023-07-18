@@ -17,8 +17,6 @@ export default function AccountRegisterForm() {
     setUserInformation({ ...userInformation, password: event.target.value });
   }
 
-  console.log(userInformation, "user information");
-
   function onClickHandler() {
     const endpoint = "http://localhost:8000/users";
 

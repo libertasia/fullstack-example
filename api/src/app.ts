@@ -20,12 +20,11 @@ app.use("/products", productRouter);
 app.use("/users", userRouter);
 
 // Serve product images from the 'images' folder
-console.log(__dirname);
-app.use(
-  "/static",
-  express.static(path.join(__dirname, "images"), { fallthrough: false })
-);
-
+// console.log(__dirname);
+// app.use(
+//   "/static",
+//   express.static(path.join(__dirname, "images"), { fallthrough: false })
+// );
 // http://localhost:8000/static/peony.webp
 
 // handler error here
