@@ -10,11 +10,11 @@ export default function AccountRegisterForm() {
     password: "",
   });
 
-  function getUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
+  function setUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInformation({ ...userInformation, email: event.target.value });
   }
 
-  function getUserPassword(event: React.ChangeEvent<HTMLInputElement>) {
+  function setUserPassword(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInformation({ ...userInformation, password: event.target.value });
   }
 
@@ -44,14 +44,14 @@ export default function AccountRegisterForm() {
         label="Email"
         variant="standard"
         value={userInformation.email}
-        onChange={getUserEmail}
+        onChange={setUserEmail}
       />
       <TextField
         id="standard-basic"
         label="Password"
         variant="standard"
         value={userInformation.password}
-        onChange={getUserPassword}
+        onChange={setUserPassword}
       />
       <Button onClick={onClickHandler}>Register</Button>
     </div>

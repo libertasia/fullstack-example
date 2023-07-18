@@ -30,7 +30,7 @@ export default function AccountLogInForm() {
       .then((res) => {
         if (res.status === 200) {
           // save to redux
-          dispatch(userActions.getUserData(res.data.userData));
+          dispatch(userActions.setUserData(res.data.userData));
           // save token to local storage
           const userToken = res.data.token;
           localStorage.setItem("userToken", userToken);

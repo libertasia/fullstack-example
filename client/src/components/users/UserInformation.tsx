@@ -1,32 +1,36 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { RootState } from "../../redux/store";
 import { TextField } from "@mui/material";
 import axios from "axios";
+import { userActions } from "../../redux/slices/user";
 
 export default function UserInformation() {
+  const dispatch = useDispatch();
   const userDetail = useSelector(
     (state: RootState) => state.users.userInformation
   );
 
-  console.log(userDetail, "detail");
-
-  //update information
-  const [newInformation, setNewInformation] = useState({
+  const [formData, setFormData] = useState({
     firstName: userDetail?.firstName,
   });
 
-  function getNewInformation(event: React.ChangeEvent<HTMLInputElement>) {
-    setNewInformation({ ...newInformation, firstName: event.target.value });
+  const [readOnly, setReadOnly] = useState(true);
+
+  function setUserFirstName(event: React.ChangeEvent<HTMLInputElement>) {
+    setFormData({ ...formData, firstName: event.target.value });
   }
 
   function onEditHandler() {
+    setReadOnly(false);
+  }
+  function onSubmitHandler() {
     // send new information to backend + token
     const token = localStorage.getItem("userToken");
     const url = `http://localhost:8000/users/${userDetail?._id}`;
     axios
-      .put(url, newInformation, {
+      .put(url, formData, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -34,7 +38,9 @@ export default function UserInformation() {
       })
       .then((res) => {
         console.log(res, "new data");
-        // refresh the page
+        // display new information
+        dispatch(userActions.setUserData(res.data));
+        // way 2:fetch user by id
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -43,6 +49,7 @@ export default function UserInformation() {
           return;
         }
       });
+    setReadOnly(true);
   }
   if (!userDetail) {
     return <div> no data ...</div>;
@@ -50,17 +57,20 @@ export default function UserInformation() {
   return (
     <div>
       <h1>User Information</h1>
-      <p> {userDetail.email}</p>
-      <p> {userDetail.firstName}</p>
+
       <TextField
         id="standard-basic"
         label="firstName"
         variant="standard"
-        value={newInformation.firstName}
-        onChange={getNewInformation}
+        value={formData.firstName}
+        onChange={setUserFirstName}
+        InputProps={{
+          readOnly: readOnly,
+        }}
       />
-
-      <button onClick={onEditHandler}> Edit</button>
+      <br></br>
+      <button onClick={onEditHandler}>Edit</button>
+      <button onClick={onSubmitHandler}>Submit</button>
     </div>
   );
 }
