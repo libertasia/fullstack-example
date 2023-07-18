@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../redux/slices/user";
 
 export default function AccountLogInForm() {
   const [userInformation, setUserInformation] = useState({
@@ -16,12 +19,26 @@ export default function AccountLogInForm() {
     setUserInformation({ ...userInformation, password: event.target.value });
   }
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   function onClickHandler() {
     const endpoint = "http://localhost:8000/users/login";
 
     axios
       .post(endpoint, userInformation)
-      .then((random) => console.log(random.data))
+      .then((res) => {
+        if (res.status === 200) {
+          // save to redux
+          dispatch(userActions.getUserData(res.data.userData));
+          // save token to local storage
+          const userToken = res.data.token;
+          localStorage.setItem("userToken", userToken);
+          // navigate to user information page
+          navigate(`/users`);
+        }
+        console.log(res.data);
+      })
       .catch((error) => console.log(error));
   }
   return (

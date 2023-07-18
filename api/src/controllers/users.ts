@@ -64,7 +64,7 @@ export const logInWithPassword = async (
       { expiresIn: "1h" }
     );
 
-    res.json({ userData, token });
+    res.status(200).json({ userData, token });
   } catch (error) {
     next(error);
   }

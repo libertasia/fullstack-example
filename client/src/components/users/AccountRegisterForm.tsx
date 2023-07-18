@@ -27,7 +27,6 @@ export default function AccountRegisterForm() {
       .post(endpoint, userInformation)
       .then((res) => {
         if (res.status === 200) {
-          // save data
           // navigate to log in page
           navigate("/login");
         }
