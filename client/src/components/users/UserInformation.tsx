@@ -39,6 +39,7 @@ export default function UserInformation() {
       .then((res) => {
         console.log(res, "new data");
         // display new information
+        // update information in redux
         dispatch(userActions.setUserData(res.data));
         // way 2:fetch user by id
       })

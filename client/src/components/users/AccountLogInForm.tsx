@@ -32,6 +32,8 @@ export default function AccountLogInForm() {
           // save to redux
           dispatch(userActions.setUserData(res.data.userData));
           // save token to local storage
+          // cookie: same domain
+          // cookie more safe than local storage
           const userToken = res.data.token;
           localStorage.setItem("userToken", userToken);
           // navigate to user information page

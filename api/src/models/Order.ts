@@ -27,3 +27,11 @@ const OrderSchema = new mongoose.Schema({
 });
 
 export default mongoose.model<OrderDocument>("Order", OrderSchema);
+
+// embed product =>
+// populate => find product => join data from product to order => slow
+// 1 order : 2 products
+// 3 queries:
+// 1: get order
+// 2: get product detail 1
+// 3: get product detail 2
