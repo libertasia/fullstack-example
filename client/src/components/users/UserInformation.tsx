@@ -6,8 +6,11 @@ import { TextField } from "@mui/material";
 import axios from "axios";
 import { userActions } from "../../redux/slices/user";
 
+// fetch user by id
+// get id from useParams
 export default function UserInformation() {
   const dispatch = useDispatch();
+  // get user information from redux
   const userDetail = useSelector(
     (state: RootState) => state.users.userInformation
   );
@@ -27,7 +30,11 @@ export default function UserInformation() {
   }
   function onSubmitHandler() {
     // send new information to backend + token
+
+    // get token from local storage
+    // name???
     const token = localStorage.getItem("userToken");
+
     const url = `http://localhost:8000/users/${userDetail?._id}`;
     axios
       .put(url, formData, {
@@ -39,6 +46,7 @@ export default function UserInformation() {
       .then((res) => {
         console.log(res, "new data");
         // display new information
+
         // update information in redux
         dispatch(userActions.setUserData(res.data));
         // way 2:fetch user by id

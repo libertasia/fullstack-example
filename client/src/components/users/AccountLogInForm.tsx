@@ -29,14 +29,21 @@ export default function AccountLogInForm() {
       .post(endpoint, userInformation)
       .then((res) => {
         if (res.status === 200) {
+          // res.data: object: user information + token
+
           // save to redux
           dispatch(userActions.setUserData(res.data.userData));
+
           // save token to local storage
           // cookie: same domain
           // cookie more safe than local storage
           const userToken = res.data.token;
           localStorage.setItem("userToken", userToken);
+
           // navigate to user information page
+          // fetch user by id
+          // navigate(`/users/${res.data.userData._id}`);
+
           navigate(`/users`);
         }
         console.log(res.data);

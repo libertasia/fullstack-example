@@ -20,8 +20,13 @@ export const createUser = async (
       email: req.body.email,
       password: hashedPassword,
     });
+    // way 1
     const newUser = await UserServices.createUserService(userInformation);
     res.status(200).json(newUser);
+
+    // way 2
+    // await UserServices.createUserService(userInformation);
+    // res.status(200)
   } catch (error) {
     next(error);
   }
@@ -50,7 +55,7 @@ export const logInWithPassword = async (
     // 3. expire time: 1h, 1m, 1s
     const match = await bcrypt.compare(userData.password, req.body.password);
     if (match) {
-      throw new BadRequestError("Password doesnt match  !");
+      throw new BadRequestError("Password does not match  !");
     }
     const token = jwt.sign(
       {
