@@ -10,15 +10,15 @@ const router = Router();
 
 // create user
 router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  "/:userId",
+  // passport.authenticate("jwt", { session: false }),
   createOrderController
 );
 
 // get orderList by user id
 router.get(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   getOrderListByUserId
 );
 

@@ -3,12 +3,31 @@ import mongoose, { Document } from "mongoose";
 import { ProductDocument, ProductSchema } from "./Product";
 
 // ProductOrder = Product+quantity
+
+type ProductOrderDocument = Document & {
+  title: string;
+  price: number;
+  image: string;
+  quantity: number;
+};
+
 // type from typescript
 export type OrderDocument = Document & {
   createdAt: Date;
-  productList: ProductDocument[];
+  productList: ProductOrderDocument[];
   userId: string;
 };
+
+const ProductOrderSchema = new mongoose.Schema({
+  title: { type: String },
+  price: {
+    type: Number,
+  },
+  image: {
+    type: String,
+  },
+  quantity: { type: Number },
+});
 
 // add quantity to product in order document
 const OrderSchema = new mongoose.Schema({
@@ -18,7 +37,7 @@ const OrderSchema = new mongoose.Schema({
     default: Date.now,
   },
   // syntax embed
-  productList: [ProductSchema],
+  productList: [ProductOrderSchema],
   // ref to User Document
   userId: {
     type: mongoose.Schema.Types.ObjectId,

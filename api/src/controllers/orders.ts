@@ -28,7 +28,7 @@ export const getOrderListByUserId = async (
 ) => {
   try {
     const userId = req.params.id;
-    const orderList = orderServices.getOrderByUserId(userId);
+    const orderList = await orderServices.getOrderByUserId(userId);
     res.status(200).json(orderList);
   } catch (error) {
     next(error);
