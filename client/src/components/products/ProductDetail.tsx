@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AppDispatch, RootState } from "../../redux/store";
 import { fetchProductDetail } from "../../redux/thunks/products";
+import { Product } from "../../types/type";
+import { cartActions } from "../../redux/slices/carts";
 
 export default function ProductDetail() {
   const productDetail = useSelector(
@@ -20,13 +22,20 @@ export default function ProductDetail() {
       dispatch(fetchProductDetail(productId));
     }
   }, [productId, dispatch]);
+
+  function onClickHandler(item: Product) {
+    dispatch(cartActions.addCartList(item));
+  }
+
   if (!productDetail) {
     return <div> no data ...</div>;
   }
   return (
     <div>
       <h1>ProductDetail</h1>
-      {productDetail.title}
+      <p>{productDetail.title}</p>
+      <p> {productDetail.price}</p>
+      <button onClick={() => onClickHandler(productDetail)}>Add to cart</button>
     </div>
   );
 }
