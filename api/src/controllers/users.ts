@@ -80,8 +80,12 @@ export const updateUserController = async (
   res: Response,
   next: NextFunction
 ) => {
-  const update = req.body;
-  const userId = req.params.id;
-  const updatedUser = await UserServices.updateUser(userId, update);
-  res.status(200).json(updatedUser);
+  try {
+    const update = req.body;
+    const userId = req.params.id;
+    const updatedUser = await UserServices.updateUser(userId, update);
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 };

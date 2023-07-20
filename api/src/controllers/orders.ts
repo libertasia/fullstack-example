@@ -25,4 +25,12 @@ export const getOrderListByUserId = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {};
+) => {
+  try {
+    const userId = req.params.id;
+    const orderList = orderServices.getOrderByUserId(userId);
+    res.status(200).json(orderList);
+  } catch (error) {
+    next(error);
+  }
+};
