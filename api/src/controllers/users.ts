@@ -59,9 +59,8 @@ export const logInWithPassword = async (
     }
     const token = jwt.sign(
       {
-        // email and password
         // never use password
-        // firstName, lastName
+        // user information: firstName, lastName
         email: userData.email,
         _id: userData._id,
       },

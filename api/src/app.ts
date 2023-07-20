@@ -5,6 +5,7 @@ import cors from "cors";
 
 import productRouter from "./routes/products";
 import userRouter from "./routes/users";
+import orderRouter from "./routes/orders";
 import apiErrorHandler from "./middlewares/apiErrorHandler";
 import { jwtStrategy } from "./config/passport";
 
@@ -18,6 +19,7 @@ passport.use(jwtStrategy);
 // routes
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use("/orders", orderRouter);
 
 // Serve product images from the 'images' folder
 // console.log(__dirname);
