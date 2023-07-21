@@ -4,6 +4,7 @@ import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../redux/slices/user";
+import { baseURL } from "../../util";
 
 export default function AccountLogInForm() {
   const [userInformation, setUserInformation] = useState({
@@ -23,7 +24,7 @@ export default function AccountLogInForm() {
   const dispatch = useDispatch();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:8000/users/login";
+    const endpoint = `${baseURL}/users/login`;
 
     axios
       .post(endpoint, userInformation)

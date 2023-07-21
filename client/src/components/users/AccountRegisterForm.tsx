@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { baseURL } from "../../util";
 
 export default function AccountRegisterForm() {
   // get user information: email +password
@@ -21,7 +22,7 @@ export default function AccountRegisterForm() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    const endpoint = "http://localhost:8000/users";
+    const endpoint = `${baseURL}/users`;
 
     axios
       .post(endpoint, userInformation)

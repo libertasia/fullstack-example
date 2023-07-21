@@ -5,6 +5,7 @@ import { RootState } from "../../redux/store";
 import { TextField } from "@mui/material";
 import axios from "axios";
 import { userActions } from "../../redux/slices/user";
+import { baseURL } from "../../util";
 
 // fetch user by id
 // get id from useParams
@@ -35,7 +36,7 @@ export default function UserInformation() {
     // name???
     const token = localStorage.getItem("userToken");
 
-    const url = `http://localhost:8000/users/${userDetail?._id}`;
+    const url = `${baseURL}/users/${userDetail?._id}`;
     axios
       .put(url, formData, {
         headers: {

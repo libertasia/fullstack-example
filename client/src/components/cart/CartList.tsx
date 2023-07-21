@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import axios from "axios";
+import { baseURL } from "../../util";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
@@ -16,7 +17,7 @@ export default function CartList() {
     // send data to backend
     const token = localStorage.getItem("userToken");
 
-    const url = `http://localhost:8000/users/${userDetail?._id}`;
+    const url = `${baseURL}/users/${userDetail?._id}`;
     axios
       .put(url, cartList, {
         headers: {
