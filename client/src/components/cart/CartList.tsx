@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function CartList() {
   const cartList = useSelector((state: RootState) => state.cart.cartList);
+  const userDetail = useSelector((state: RootState) => state.users.userInformation);
 
   const total = cartList.reduce<number>((accumulator, current) => {
     const productTotal = current.price * current.quantity;
